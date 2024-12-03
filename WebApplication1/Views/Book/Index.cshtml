@@ -1,0 +1,35 @@
+@model IEnumerable<Book>
+
+<h2>Danh sách sách</h2>
+
+<!-- Nút tạo sách mới -->
+<a href="@Url.Action("Create", "Book")" class="btn btn-primary">Tạo sách mới</a>
+
+<table class="table">
+    <tr>
+        <th>Tựa sách</th>
+        <th>Tác giả</th>
+        <th>Giá bán</th>
+        <th>Ảnh</th>
+        <th>Hành động</th>
+    </tr>
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.Price</td>
+            <td>
+                @if (!string.IsNullOrEmpty(book.Image))
+                {
+                    <img src="@book.Image" alt="@book.Title" width="100" />
+                }
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Book", new { id = book.Id })">Chi tiết</a> |
+                <a href="@Url.Action("Edit", "Book", new { id = book.Id })">Chỉnh sửa</a> |
+                <a href="@Url.Action("Delete", "Book", new { id = book.Id })" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>

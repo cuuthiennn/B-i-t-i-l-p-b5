@@ -1,0 +1,22 @@
+@model Book
+
+<h2>Thêm sách mới</h2>
+
+<form method="post" enctype="multipart/form-data" asp-action="Create" asp-controller="Book">
+    <label asp-for="Title">Tựa sách:</label>
+    <input type="text" asp-for="Title" required />
+    <br />
+    <label asp-for="Author">Tác giả:</label>
+    <input type="text" asp-for="Author" required />
+    <br />
+    <label asp-for="Description">Mô tả:</label>
+    <textarea asp-for="Description"></textarea>
+    <br />
+    <label asp-for="Price">Giá:</label>
+    <input type="number" asp-for="Price" step="0.01" required />
+    <br />
+    <label asp-for="Image">Ảnh:</label>
+    <input type="file" asp-for="Image" accept="image/*" />
+    <br />
+    <button type="submit">Thêm sách</button>
+</form>

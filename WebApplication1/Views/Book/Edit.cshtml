@@ -1,0 +1,29 @@
+@model Book
+
+<h2>Chỉnh sửa sách</h2>
+
+<form method="post" enctype="multipart/form-data" asp-action="Edit" asp-controller="Book">
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <label for="Title">Tựa sách:</label>
+    <input type="text" asp-for="Title" value="@Model.Title" required />
+    <br />
+    <label for="Author">Tác giả:</label>
+    <input type="text" asp-for="Author" value="@Model.Author" required />
+    <br />
+    <label for="Description">Mô tả:</label>
+    <textarea name="Description">@Model.Description</textarea>
+    <br />
+    <label for="Price">Giá:</label>
+    <input type="number" asp-for="Price" step="0.01" value="@Model.Price" required />
+    <br />
+    <label for="Image">Ảnh:</label>
+    <input type="file" asp-for="Image" accept="image/*" />
+    <br />
+    @if (!string.IsNullOrEmpty(Model.Image))
+    {
+    <img src="@Model.Image" alt="@Model.Title" width="100" />
+    }
+    <br />
+    <button type="submit">Cập nhật sách</button>
+    <a asp-action="Index" asp-controller="Book" class="btn btn-secondary">Trở về</a>
+</form>
